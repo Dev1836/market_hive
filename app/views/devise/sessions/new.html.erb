@@ -1,0 +1,64 @@
+<%# <h2>Log in</h2> %>
+
+<%#= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%# <div class="field"> %>
+    <%#= f.label :email %>
+    <%#= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <%# </div> %>
+
+  <%# <div class="field"> %>
+    <%#= f.label :password %>
+    <%#= f.password_field :password, autocomplete: "current-password" %>
+  <%# </div> %>
+
+  <%# if devise_mapping.rememberable? %>
+    <%# <div class="field"> %>
+      <%#= f.check_box :remember_me %>
+      <%#= f.label :remember_me %>
+    <%# </div> %>
+  <%# end %>
+
+  <%# <div class="actions"> %>
+    <%#= f.submit "Log in" %>
+  <%# </div> %>
+<%# end %>
+
+<%#= render "devise/shared/links" %>
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>SecureTrade: Your Trusted Stock Broker</title>
+      <link rel="stylesheet" href="./css/fonts.min.css">
+      <link rel="stylesheet" href="./css/bootstrap.min.css">
+      <link rel="stylesheet" href="./css/swiper.min.css">
+      <link rel="stylesheet" href="./css/style.css">
+  </head>
+  <body class="form-body">
+    <div class="container form-wrapper mx-4">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-md-6 d-none d-md-block text-center px-0">
+            <%= image_tag 'image-right.png', alt: 'Sign Up Image', class: 'signup-img w-100' %>
+        </div>
+        <div class="col-md-6 bg-white py-4 text-center form-detail">
+          <%= image_tag 'logo.svg', alt: 'Logo', class: 'form-logo mb-4' %>
+          <h5 class="text-center text-uppercase fw-700 mb-4">Login</h5>
+          <p class="text-muted fs-14">Enter details to start journey</p>
+          <form class="form" action="<%= new_user_session_path %>" method="post">
+            <div class="form-group">
+              <input type="email" class="focus-ring focus-ring-light form-control form-input mb-3" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="user[email]">
+            </div>
+            <div class="form-group">
+              <input type="password" class="focus-ring focus-ring-light form-control form-input mb-3" id="exampleInputPassword1" placeholder="Password" name="user[password]">
+            </div>
+            <p class="fs-14 text-muted">Don't have an account? <%= link_to 'Sign Up', new_user_registration_path %></p>
+            <button type="submit" class="btn btn-primary signup-btn">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

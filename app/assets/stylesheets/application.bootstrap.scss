@@ -1,0 +1,49 @@
+@import 'bootstrap/scss/bootstrap';
+@import 'bootstrap-icons/font/bootstrap-icons';
+// @import 'css/*'; 
+
+/* =================== Login Sign Up Style ===================== */
+.singup-img{
+  height: 500px;
+  object-fit: cover;
+  border-radius: 20px 0 0 20px;
+}
+.form-logo{
+  width: 120px;
+}
+.form-wrapper{
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 20px;
+  max-width: 1000px;
+}
+.form-body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.form-input{
+  width: 70%;
+  margin: auto;
+  background: #F0EDFF;
+  border: 1px solid #F0EDFF;
+  border-radius: 10px;
+  font-size: 12px;
+  height: 38px;
+}
+.signup-btn{
+  box-shadow: 0px 8px 21px 0px rgba(0, 0, 0, 0.16);
+  border-radius: 9px;
+  padding: 6px 22px;
+  font-size: 14px;
+}
+
+@media(max-width: 767px){
+  .form-body{
+    background-color: #f8f8f8;
+  }
+  .form-detail{
+    border-radius: 16px;
+    background-color: #fff;
+  }
+}

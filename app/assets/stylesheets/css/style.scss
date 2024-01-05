@@ -1,0 +1,452 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    font-family: 'Roboto';
+    margin: 0
+}
+html{
+  scroll-behavior: smooth;
+}
+a{
+    display: inline-block;
+    text-decoration: none;
+}
+.gap-1{
+    gap: 6px;
+}
+.gap-2{
+    gap: 14px;
+}
+.gap-3{
+    gap: 24px;
+}
+:root{
+    --color-dark: #222;
+    --color-white: #fff;
+    --color-primary: #4399eb;
+    --color-green: #00b865;
+    --color-red: #e6191e;
+    --theme-color: #000c7b;
+    --theme-color-hover: #1d2dbf;
+    --theme-color2: #000c7b;
+    --upstop-bg: #7f6ee91a;
+    --light-blue-bg: #4399eb1a;
+    --zerodha-bg: #2196f31a;
+    --angel-one-bg: #1ba27a1a;
+    --nuvama-bg: #eda39d1a;
+    --text-light-black: #495057;
+    --gray-bg: #f4f7fc;
+}
+.color-green{
+  color: var(--color-green);
+}
+.upstop-bg{
+  background-color: var(--upstop-bg);
+}
+.home-gray-bg{
+  background-color: var(--gray-bg);
+}
+.light-blue-bg{
+  background-color: var(--light-blue-bg);
+}
+.zerodha-bg{
+  background-color: var(--zerodha-bg);
+}
+.angel-one-bg{
+  background-color: var(--angel-one-bg);
+}
+.nuvama-bg{
+  background-color: var(--nuvama-bg);
+}
+.text-white{
+    color: var(--color-white);
+}
+.text-success{
+    color: var(--color-green);
+}
+.text-light-black{
+  color: var(--text-light-black);
+}
+.text-danger{
+    color: var(--color-red);
+}
+ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.header{
+    padding: 10px 14px;
+    background-color: var(--color-dark);
+    height: 40px;
+}
+.marquee-text{
+    color: var(--color-white);
+}
+.stock-info{
+    font-size: 14px;
+}
+.stock-name{
+    font-weight: 500;
+    text-transform: uppercase;
+}
+th, td{
+    font-size: 12px;
+    font-weight: 400;
+}
+.price-table{
+    width: 80%;
+}
+.advertisment-img{
+    width: 240px;
+}
+.nav-pills .nav-link{
+  color: var(--color-dark);
+}
+.nav-pills{
+  border-bottom: 1px solid #eee;
+}
+.nav-pills .nav-link.active{
+  color: var(--color-primary);
+  background-color: unset;
+  border-bottom: 2px solid var(--color-primary);
+  border-radius: 0;
+}
+.nav-pills.inside-nav-pill .nav-link{
+  padding: 4px 24px;
+}
+.nav-pills.inside-nav-pill .nav-link.active{
+  background-color: var(--color-primary);
+  color: #fff;
+  border-radius: 4px;
+  border-bottom: 0;
+}
+th{
+  background-color: #f1f5fa !important;
+}
+th, td{
+  padding: 8px 16px !important;
+}
+.navbar-brand svg{
+  width: 120px;
+}
+.navbar-brand svg g{
+  fill: var(--theme-color-hover);
+}
+.fw-500{
+  font-weight: 500;
+}
+.fw-700{
+  font-weight: 700;
+}
+.card-wrap{
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  width: 90%;
+}
+.stock-name{
+  font-size: 13px;
+}
+.stock-name span{
+  font-size: 13px;
+}
+.fs-14{
+  font-size: 14px;
+}
+.swiper-button-next:after, .swiper-button-prev:after{
+  color: var(--theme-color-hover);
+  font-size: 22px;
+  font-weight: 900;
+}
+.swiper-button-next{
+  right: 0;
+}
+.swiper-button-prev{
+  left: 0;
+}
+.stock-img-wrap{
+  width: 37px;
+  height: 37px;
+  margin-right: 7px;
+  padding: 5px;
+  background-color: var(--color-white);
+  border-radius: 50%;
+}
+.stock-img-wrap img{
+  width: 22px;
+  height: 22px;
+}
+.stock-label{
+  font-size: 13px;
+  font-weight: 600;
+}
+.stock-desc{
+  font-size: 11px;
+}
+.stock-card{
+  padding: 6px 16px;
+  border-radius: 4px;
+  width: 18%;
+  border: 1px solid transparent;
+  transition: all .3s;
+}
+.stock-card:hover{
+  box-shadow: 0 5px 18px 0 rgba(33,150,243,.18);
+  border-color: var(--color-primary);
+}
+.bor-success{
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #77ffc20d;
+}
+.bor-danger{
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #ff93960a;
+}
+.status-badge{
+  font-size: 12px;
+  padding: 2px 10px;
+  border-radius: 22px;
+  font-weight: 700;
+  height: 22px;
+}
+.sub-title{
+  color: #818992;
+}
+.top-broker .nav-pills .nav-link{
+  padding: 14px 22px;
+  background-color: var(--color-white);
+  border-radius: 4px;
+  border: 1px solid transparent;
+  min-width: 140px;
+}
+.top-broker .nav-pills .nav-link.active::after{
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-right: auto;
+  margin-left: auto;
+  top: 101%;
+  width: 0;
+  height: 0;
+  border-color: #2196f3 transparent transparent;
+  border-style: solid;
+  border-width: 10px 10px 0;
+}
+.top-broker .nav-pills .nav-link.active{
+  background-color: #fff;
+  border-bottom: 0;
+  border: 1px solid var(--color-primary);
+  box-shadow: 0 8px 24px 0 rgba(33,150,243,.2);
+  border-radius: 4px;
+  position: relative;
+}
+.broker-img{
+  height: 24px;
+}
+.broker-tab-content{
+  background-color: var(--color-white);
+  border-radius: 6px;
+  box-shadow: 0 3px 16px 0 rgba(35,47,62,.15);
+}
+.logo-img-wrap{
+  width: 120px;
+}
+.broker-title span{
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+.broker-title{
+  min-width: 140px;
+}
+.open-account-btn{
+  background-image: linear-gradient(180deg,#4399eb,#5cadfb);
+  border-radius: 4px;
+  padding: 7px 22px;
+  color: var(--color-white);
+  transition: .3s all;
+}
+.open-account-btn:hover{
+  background-image: linear-gradient(180deg,#5cadfb,#4399eb);
+  transition: .3s all;
+}
+.broker-service-title-wrap{
+  min-width: 140px;
+}
+.broker-service-title{
+  background-color: #f1f5f9;
+  font-size: 13px;
+  border-radius: 6px;
+}
+.broker-premium-feature .title{
+  font-size: 13px;
+  color: #74788d;
+}
+.broker-premium-feature .price{
+  font-size: 15px;
+}
+.broker-premium-feature ul{
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.blog-img{
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.blog-title, .blog-card-text{
+  font-size: 20px;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 48px;
+}
+.blog-card-text{
+  font-size: 14px;
+  color: #767f88;
+}
+.blog-date{
+  font-size: 15px;
+  margin-top: 1px;
+}
+.blog-card-text{
+  -webkit-line-clamp: 3;
+}
+.footer{
+  /* app/assets/images/footer.webp */
+  /* url(/stylesheets/css/images/footer.webp) */
+  // background-image: url(footer.webp);
+  background-image: url('/app/assets/images/footer.webp');
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+}
+.footer .navbar-brand svg g{
+  fill: var(--color-white);
+}
+.footer-desc{
+  color: #adb5bd;
+  font-size: 14px;
+}
+.footer-links:hover{
+  transition: .4s all;
+  color: var(--color-white);
+}
+.email-input{
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border: 1px solid #ccc;
+  height: 40px;
+  border-radius: 4px;
+  color: var(--color-white);
+  font-size: 13px;
+  padding: 10px 20px;
+}
+.footer-row{
+  border-bottom: 1px solid #777;
+}
+.btn-subscribe{
+  background-color: #565555;
+  border-radius: 4px;
+}
+.market-action-section .outer-tab-content{
+  padding-left: 120px;
+}
+.asside-tabs{
+  position: absolute;
+  left: 0;
+  top: 50%;
+}
+.asside-tabs li{
+  background: #fbfbfb;
+  margin: 10px 0;
+  border-radius: 4px;
+}
+.asside-tabs button{
+  display: block;
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+.filter-buttons {
+  font-size: 14px;
+  background: #f1f5fa;
+  padding: 4px 15px;
+  border-radius: 23px;
+}
+
+@media (max-width: 1200px){
+  .top-broker .nav-pills .nav-link{
+    min-width: auto;
+  }
+}
+@media(max-width: 1024px){
+  th, td{
+    padding: 10px !important;
+    min-width: 120px;
+  }
+  .stock-card{
+    width: auto;
+  }
+  .stock-row{
+    flex-wrap: wrap;
+  }
+  .indices-name, .indices-value{
+    font-size: 12px;
+  }
+}
+@media(max-width: 576px){
+  .navbar-brand svg{
+    width: 100px;
+  }
+  .search-box{
+    width: 140px;
+  }
+  .btn-wrap {
+    white-space: normal;
+  }  
+  .swiper-button-prev{
+    left: -7px;
+  }
+  .swiper-button-next{
+    right: -7px;
+  }
+  .swiper-button-next:after, .swiper-button-prev:after{
+    font-size: 18px;
+  }
+  .stock-text, .footer-heading, .blog-title{
+    font-size: 16px;
+  }
+  .blog-title{
+    min-height: 40px;
+  }
+  .stock-value, .stock-status{
+    font-size: 12px;
+  }
+  .nav-pills .nav-link {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  .market-action-section .outer-tab-content{
+    padding-left: 0;
+  }
+  .nav-pills.inside-nav-pill .nav-link {
+    padding: 4px 12px;
+  }
+  .asside-tabs {
+    position: static;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+  }
+}
