@@ -79,6 +79,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
   database: market_hive_production
-  username: market_hive
+  username: postgres
   password: <%= ENV["MARKET_HIVE_DATABASE_PASSWORD"] %>
