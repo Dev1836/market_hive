@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+require "rk_exchange/version"
 require "rk_exchange/adapters/base"
 require "rk_exchange/adapters/mcx"
 require "rk_exchange/adapters/nse"
