@@ -6,3 +6,6 @@
   //= link css/style.css
   //= link_tree ../images
   //= link_tree ../builds
+  //= link js/bundle.min.js
+  //= link js/swiper.min.js
+  //= link js/jquery.min.js
