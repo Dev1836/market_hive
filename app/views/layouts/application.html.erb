@@ -8,11 +8,16 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="<%= asset_path 'css/fonts.min.css' %>">
+    <link rel="stylesheet" href="<%= asset_path 'css/bootstrap.min.css' %>">
+    <link rel="stylesheet" href="<%= asset_path 'css/swiper.min.css' %>">
+    <link rel="stylesheet" href="<%= asset_path 'css/style.css' %>">
   </head>
 
   <body>
+    <%#= render partial: 'layouts/header'%>
     <%= yield %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <%#= render partial: 'layouts/footer'%>
   </body>
 </html>
