@@ -7,5 +7,11 @@ Rails.application.routes.draw do
   end
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+  namespace :api do
+    namespace :v1 do
+      resources :stocks, only: [:create]
+    end
+  end
+  
   get "up" => "rails/health#show", as: :rails_health_check
 end
