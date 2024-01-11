@@ -6,7 +6,6 @@ module Api
         
         if stock_data.is_a?(Array)
           stock_data.each do |data|
-            byebug
             stock = Stock.find_by(symbol: data['symbol'])
 
             if stock.present?
