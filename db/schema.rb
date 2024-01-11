@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_27_073121) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_10_082633) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,6 +54,19 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_27_073121) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["listing_index_id"], name: "index_listing_symbols_on_listing_index_id"
+  end
+
+  create_table "stocks", force: :cascade do |t|
+    t.string "symbol"
+    t.string "index_name"
+    t.integer "prev_price"
+    t.integer "high_price"
+    t.integer "low_price"
+    t.integer "open_price"
+    t.integer "per_change"
+    t.integer "last_price"
+    t.bigint "total_traded_volume"
+    t.bigint "total_traded_value"
   end
 
   create_table "users", force: :cascade do |t|

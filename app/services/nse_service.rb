@@ -54,7 +54,7 @@ class NseService
 
   end
 
-  # private
+  private
 
   def all_indices
     self.class.get("/api/allIndices", headers: headers)

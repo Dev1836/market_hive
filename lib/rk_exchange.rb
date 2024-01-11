@@ -12,14 +12,6 @@ module RkExchange
       @adapter = adapter.new
     end
 
-    # def status
-    #   @adapter.status
-    # end
-
-    # def indexes
-    #   @adapter.indices
-    # end
-
     def self.nse_client
       new(Adapters::Nse)
     end
@@ -37,8 +29,7 @@ module RkExchange
     end
 
     def stock(index)
-      # @adapter.stock(index)
-      {}
+      @adapter.stock(index) 
     end
 
     def symbol_info(market_symbol, expiry = nil)
@@ -46,13 +37,11 @@ module RkExchange
     end
 
     def losers
-      # @adapter.losers
-      {}
+      @adapter.losers
     end
 
     def gainers
-      # @adapter.gainers
-      {}
+      @adapter.gainers
     end
 
     def most_active_by_value

@@ -1,0 +1,36 @@
+module HomesHelper
+  def display_stock_data(stock_data, columns)
+    stock_data.map do |item|
+      content_tag(:tr) do
+        columns.each do |column|
+          concat content_tag(:td, item[column])
+        end
+      end
+    end.join.html_safe
+  end
+
+  def display_gainers_data(gainers_data)
+    columns = ['symbol', 'open_price', 'high_price', 'low_price', 'last_price', 'prev_price', 'per_change']
+    display_stock_data(gainers_data, columns)
+  end
+
+  def display_losers_data(losers_data)
+    columns = ['symbol', 'open_price', 'high_price', 'low_price', 'last_price', 'prev_price', 'per_change']
+    display_stock_data(losers_data, columns)
+  end
+
+  def display_same_open_low(data)
+    columns = ['symbol', 'open_price', 'high_price', 'low_price', 'last_price', 'prev_price', 'per_change']
+    display_stock_data(data, columns)
+  end
+
+  def display_same_open_high(data)
+    columns = ['symbol', 'open_price', 'high_price', 'low_price', 'last_price', 'prev_price', 'per_change']
+    display_stock_data(data, columns)
+  end
+
+  def display_all_stock_data(data)
+    columns = ['symbol', 'open_price', 'high_price', 'low_price', 'last_price', 'prev_price', 'per_change','total_traded_volume', 'total_traded_value']
+    display_stock_data(data, columns)
+  end
+end
