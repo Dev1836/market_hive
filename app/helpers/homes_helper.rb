@@ -14,6 +14,10 @@ module HomesHelper
     display_stock_data(gainers_data, columns)
   end
 
+  def nifty_50
+    Stock.find_by(symbol: "NIFTY 50")
+  end
+
   def display_losers_data(losers_data)
     columns = ['symbol', 'open_price', 'high_price', 'low_price', 'last_price', 'prev_price', 'per_change']
     display_stock_data(losers_data, columns)

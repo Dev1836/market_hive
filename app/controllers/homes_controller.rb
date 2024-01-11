@@ -1,6 +1,6 @@
 class HomesController < ApplicationController
   def index
-    nse_data_processor = NseDataProcessor.new
+    nse_data_processor = Nse.new
     @gainers_data = nse_data_processor.find_gainers
     @losers_data = nse_data_processor.find_losers
     @same_open_low_data = nse_data_processor.same_open_low

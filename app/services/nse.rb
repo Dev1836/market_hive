@@ -1,12 +1,10 @@
-require_relative 'nse_service'
-
-class NseDataProcessor
+class Nse < Base
   def initialize
-    @nse_service = NseService.new
+    @nse_service = RkExchange::Client.nse_client
   end
 
   def fetch_stock_data
-    stock_data = @nse_service.stock(index='NIFTY 50')
+    stock_data = @nse_service.stock
     if stock_data.success?
       stock_data['data'].each do |data|
         stock = Stock.find_by(symbol: data['symbol'])
@@ -59,6 +57,6 @@ class NseDataProcessor
   end
 
   def display_stock_data(order:)
-    stock_data = Stock.order(per_change: order).limit(10)
+    stock_data = Stock.where(index_name: 'NIFTY 50').order(per_change: order).limit(10)
   end
 end

@@ -9,7 +9,7 @@ if Rails.env.development?
   end
 
   scheduler.every '5m' do
-    NseDataProcessor.new.fetch_stock_data
+    Nse.new.fetch_stock_data
     Rails.logger.info "Updated developement stocks"
   end  
 end

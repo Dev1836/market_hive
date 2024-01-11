@@ -14,7 +14,5 @@ class UpdateStocks
       body: { stocks: stocks }.to_json,
       headers: { 'Content-Type' => 'application/json' }
     )
-
-    Rails.logger.info "Updated stocks data from local"
   end
 end

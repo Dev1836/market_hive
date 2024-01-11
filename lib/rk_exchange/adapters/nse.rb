@@ -12,11 +12,7 @@ module RkExchange
         api_request(:status)
       end
 
-      def indexes
-        api_request(:indices)
-      end
-
-      def stock(index)
+      def stock(index='NIFTY 50')
         api_request(:stock, query: { index: index })
       end
 

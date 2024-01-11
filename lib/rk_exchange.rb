@@ -28,8 +28,8 @@ module RkExchange
       @adapter.same_open_low(index)
     end
 
-    def stock(index)
-      @adapter.stock(index) 
+    def stock
+      @adapter.stock 
     end
 
     def symbol_info(market_symbol, expiry = nil)
