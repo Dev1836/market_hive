@@ -195,39 +195,44 @@
       <!-- Left column for buttons -->
       <div class="col-12 col-lg-2">
         <div class="d-flex flex-column gap-3">
-          <button class="btn btn-primary" id="pills-aside-tab" data-bs-toggle="pill" data-bs-target="#pills-aside" type="button" role="tab" aria-controls="pills-aside" aria-selected="false" data-category="mcx">MCX</button>
+          <% if current_user %>
+            <button id="showFavoritesBtn">Favorite Stocks</button>
+          <% end %>
+          <button class="btn btn-primary" id="pills-aside-tab" data-bs-toggle="pill" data-bs-target="#pills-aside" type="button" role="tab" aria-controls="pills-favorite" aria-selected="false" data-category="mcx">MCX</button>
           <button class="btn btn-primary" id="pills-nifty50-tab" data-bs-toggle="pill" data-bs-target="#pills-nifty50" type="button" role="tab" aria-controls="pills-nifty50" aria-selected="false" data-category="nifty50">Nifty 50</button>
           <button class="btn btn-primary" id="pills-nifty-bank-tab" data-bs-toggle="pill" data-bs-target="#pills-nifty-bank" type="button" role="tab" aria-controls="pills-nifty-bank" aria-selected="false" data-category="niftyBank">Nifty Bank</button>
         </div>
       </div>
   
       <!-- Right column for data -->
-      <div class="col-12 col-lg-7">
-        <div class="tab-content">
-          <div class="tab-pane fade show active" id="pills-symbol" role="tabpanel" aria-labelledby="pills-home-tab" data-category="mcx">
-            <%= render partial: 'mcx' %>
-          </div>
-          <div class="tab-pane fade" id="pills-nifty50" role="tabpanel" aria-labelledby="pills-nifty50-tab" data-category="nifty50">
-            <%= render partial: 'nifty' %>
-          </div>
-          <div class="tab-pane fade" id="pills-nifty-bank" role="tabpanel" aria-labelledby="pills-nifty-bank-tab" data-category="niftyBank">
-            <%= render partial: 'nifty_bank' %>
-          </div>
+    <div class="col-12 col-lg-7">
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="pills-symbol" role="tabpanel" aria-labelledby="pills-home-tab" data-category="mcx">
+          <%= render partial: 'mcx' %>
         </div>
-
-      <div class="col-lg-3">
-        <a href="#" class="d-block">
-          <span class="d-block text-center text-dark bg-light p-1 fs-14">Advertisment</span>
-          <%= image_tag 'advertisment.gif', alt: 'Advertisement', class: 'add-img w-100' %>
-        </a>
-        <a href="#" class="d-block mt-4">
-          <span class="d-block text-center text-dark bg-light p-1 fs-14">Advertisment</span>
-          <%= image_tag 'netflix-add.gif', class: 'add-img w-100', alt: "" %>
-        </a>
+        <div class="tab-pane fade" id="pills-nifty50" role="tabpanel" aria-labelledby="pills-nifty50-tab" data-category="nifty50">
+          <%= render partial: 'nifty' %>
+        </div>
+        <div class="tab-pane fade" id="pills-nifty-bank" role="tabpanel" aria-labelledby="pills-nifty-bank-tab" data-category="niftyBank">
+          <%= render partial: 'nifty_bank' %>
+        </div>
       </div>
     </div>
+
+    <div class="col-lg-3">
+      <a href="#" class="d-block">
+        <span class="d-block text-center text-dark bg-light p-1 fs-14">Advertisment</span>
+        <%= image_tag 'advertisment.gif', alt: 'Advertisement', class: 'add-img w-100' %>
+      </a>
+      <a href="#" class="d-block mt-4">
+        <span class="d-block text-center text-dark bg-light p-1 fs-14">Advertisment</span>
+        <%= image_tag 'netflix-add.gif', class: 'add-img w-100', alt: "" %>
+      </a>
+    </div>
   </section>
-  
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
   <script>
     document.querySelectorAll('.btn').forEach(function(button) {
       button.addEventListener('click', function() {
@@ -239,6 +244,44 @@
         document.querySelector('.tab-pane[data-category="' + category + '"]').classList.add('show', 'active');
       });
     });
+
+  $(document).ready(function() {
+   $("#showFavoritesBtn").on("click", function() {
+     var selectedStockIds = $('input[name="selected_stock_ids[]"]:checked').map(function() {
+       return $(this).val();
+     }).get();
+ 
+     var csrfToken = $('meta[name=csrf-token]').attr('content');
+ 
+     function showFavoriteStocks() {
+         $('tbody tr').hide();
+         $('input[name="selected_stock_ids[]"]:checked').each(function () {
+           $(this).closest('tr').show();
+         });
+       }
+       $('#showFavoritesBtn').on('click', function () {
+         showFavoriteStocks();
+         $('th:contains("Select"), td:contains("Select"), .favorite-checkbox').hide();
+       });
+ 
+     selectedStockIds.forEach(function(stockId) {
+       $.ajax({
+         url: '/api/v1/stocks/' + stockId + '/favorites',
+         method: 'POST',
+         data: { stock_id: stockId, authenticity_token: csrfToken },
+         success: function(response) {
+           console.log('Favorite updated successfully for stock_id: ' + stockId);
+           showSelectedStocks(); // Show only the selected rows after updating favorites
+           $('th:contains("Select"), td:contains("Select"), .favorite-checkbox').hide();
+         },
+         error: function(error) {
+           console.error('Error updating favorite for stock_id ' + stockId + ':', error);
+         }
+       });
+     });
+   });
+ });
+
   </script>
 
  <section class="global-market-section container" id="globalMarketSection">

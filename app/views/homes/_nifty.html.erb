@@ -26,20 +26,16 @@
     <div class="table-responsive">
       <table class="table">
         <thead>
-          <tr> 
-            <th scope="col">Symbol</th>
-            <th scope="col">Open Price</th>
-            <th scope="col">High Price</th>
-            <th scope="col">Low Price</th>
-            <th scope="col">Last Price</th>
-            <th scope="col">Previous Price</th>
-            <th scope="col">Per-Change</th>
-            <th scope="col">Total Traded Volume</th>
-            <th scope="col">Total Traded Value</th>
+          <tr>
+            <% columns = ['symbol', 'open_price', 'high_price', 'low_price', 'last_price', 'prev_price', 'per_change','total_traded_volume', 'total_traded_value'] %>
+            <% columns.each do |column| %>
+              <th scope="col"><%= column.humanize %></th>
+            <% end %>
+            <th scope="col">Favorite</th>
           </tr>
         </thead>
         <tbody>
-          <%= display_all_stock_data(@stock_nse) %>
+          <%= display_stock_data(@stock_nse, columns, true) %>
         </tbody>
       </table>
     </div>
@@ -50,17 +46,15 @@
       <table class="table">
         <thead>
           <tr>
-          <th scope="col">Symbol</th>
-          <th scope="col">Open Price</th>
-          <th scope="col">High Price</th>
-          <th scope="col">Low Price</th>
-          <th scope="col">Last Price</th>
-          <th scope="col">Previous Price</th>
-          <th scope="col">Per-Change</th>
+            <% columns = ['symbol', 'open_price', 'high_price', 'low_price', 'last_price', 'prev_price', 'per_change'] %>
+            <% columns.each do |column| %>
+              <th scope="col"><%= column.humanize %></th>
+            <% end %>
+            <th scope="col">Favorite</th>
           </tr>
         </thead>
         <tbody>
-          <%= display_gainers_data(@gainers_nse) %>
+          <%= display_stock_data(@gainers_nse, columns, true) %>
         </tbody>
       </table>
     </div>
@@ -71,17 +65,15 @@
       <table class="table">
         <thead>
           <tr>
-          <th scope="col">Symbol</th>
-          <th scope="col">Open Price</th>
-          <th scope="col">High Price</th>
-          <th scope="col">Low Price</th>
-          <th scope="col">Last Price</th>
-          <th scope="col">Previous Price</th>
-          <th scope="col">Per-Change</th>
+            <% columns = ['symbol', 'open_price', 'high_price', 'low_price', 'last_price', 'prev_price', 'per_change'] %>
+            <% columns.each do |column| %>
+              <th scope="col"><%= column.humanize %></th>
+            <% end %>
+            <th scope="col">Favorite</th>
           </tr>
         </thead>
         <tbody>
-          <%= display_losers_data(@losers_nse) %>
+          <%= display_stock_data(@losers_nse, columns, true) %>
         </tbody>
       </table>
     </div>
@@ -92,17 +84,15 @@
       <table class="table">
         <thead>
           <tr>
-          <th scope="col">Symbol</th>
-          <th scope="col">Open Price</th>
-          <th scope="col">High Price</th>
-          <th scope="col">Low Price</th>
-          <th scope="col">Last Price</th>
-          <th scope="col">Previous Price</th>
-          <th scope="col">Per-Change</th>
+            <% columns = ['symbol', 'open_price', 'high_price', 'low_price', 'last_price', 'prev_price', 'per_change'] %>
+            <% columns.each do |column| %>
+              <th scope="col"><%= column.humanize %></th>
+            <% end %>
+            <th scope="col">Favorite</th>
           </tr>
         </thead>
         <tbody>
-          <%= display_same_open_low(@same_open_low_nse) %>
+          <%= display_stock_data(@same_open_low_nse, columns, true) %>
         </tbody>
       </table>
     </div>
@@ -113,17 +103,15 @@
       <table class="table">
         <thead>
           <tr>
-          <th scope="col">Symbol</th>
-          <th scope="col">Open Price</th>
-          <th scope="col">High Price</th>
-          <th scope="col">Low Price</th>
-          <th scope="col">Last Price</th>
-          <th scope="col">Previous Price</th>
-          <th scope="col">Per-Change</th>
+            <% columns = ['symbol', 'open_price', 'high_price', 'low_price', 'last_price', 'prev_price', 'per_change'] %>
+            <% columns.each do |column| %>
+              <th scope="col"><%= column.humanize %></th>
+            <% end %>
+            <th scope="col">Favorite</th>
           </tr>
         </thead>
         <tbody>
-          <%= display_same_open_high(@same_open_high_nse) %>
+          <%= display_stock_data(@same_open_high_nse, columns, true) %>
         </tbody>
       </table>
     </div>

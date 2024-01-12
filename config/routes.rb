@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   namespace :api do
     namespace :v1 do
-      resources :stocks, only: [:create]
+      resources :stocks, only: [:create,:update] do
+        resources :favorites, only: [:create, :destroy]
+      end
     end
   end
   

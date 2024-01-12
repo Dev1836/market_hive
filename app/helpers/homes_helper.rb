@@ -1,9 +1,12 @@
 module HomesHelper
-  def display_stock_data(stock_data, columns)
+  def display_stock_data(stock_data, columns, show_checkboxes = false)
     stock_data.map do |item|
       content_tag(:tr) do
         columns.each do |column|
           concat content_tag(:td, item[column])
+        end
+        if show_checkboxes
+          concat content_tag(:td, check_box_tag('selected_stock_ids[]', item.id, current_user.favorites.include?(item), class: 'favorite-checkbox'))
         end
       end
     end.join.html_safe

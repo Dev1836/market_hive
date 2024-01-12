@@ -2,7 +2,7 @@ module Api
   module V1
     class StocksController < ApplicationController
       def create
-        stock_data = params[:stocks] # Assuming the data is sent as a parameter named 'stocks'
+        stock_data = params[:stocks]
         
         if stock_data.is_a?(Array)
           stock_data.each do |data|
