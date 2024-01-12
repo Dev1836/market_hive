@@ -23,6 +23,10 @@ class Mcx < Base
     end
   end
 
+  def all_stock_data_mcx
+    Stock.where('index_name = ?', 'MCX')
+  end
+
   def find_losers
     display_stock_data(order: :asc)
   end

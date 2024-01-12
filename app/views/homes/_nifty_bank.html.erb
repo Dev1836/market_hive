@@ -1,50 +1,55 @@
 <ul class="nav nav-pills justify-content-center mb-3 market-action-tab-ul" id="pills-tab" role="tablist">
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="pills-all-nse-tab" data-bs-toggle="pill" data-bs-target="#pills-all-nse" type="button" role="tab" aria-controls="pills-all-nse" aria-selected="false">All</button>
+    <a class="nav-link active" id="pills-all-nifty-bank-tab" data-bs-toggle="pill" href="#pills-all-nifty-bank" role="tab"
+      aria-controls="pills-all-nifty-bank" aria-selected="true">All</a>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="pills-gainers-nse-tab" data-bs-toggle="pill" data-bs-target="#pills-gainers-nse" type="button" role="tab" aria-controls="pills-gainers-nse" aria-selected="false">Top gainer</button>      
+    <a class="nav-link" id="pills-gainers-nifty-bank-tab" data-bs-toggle="pill" href="#pills-gainers-nifty-bank" role="tab"
+      aria-controls="pills-gainers-nifty-bank" aria-selected="false">Top gainer</a>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="pills-losers-nse-tab" data-bs-toggle="pill" data-bs-target="#pills-losers-nse" type="button" role="tab" aria-controls="pills-losers-nse" aria-selected="false">Top losers</button>
+    <a class="nav-link" id="pills-losers-nifty-bank-tab" data-bs-toggle="pill" href="#pills-losers-nifty-bank" role="tab"
+      aria-controls="pills-losers-nifty-bank" aria-selected="false">Top losers</a>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="pills-open-low-nse-tab" data-bs-toggle="pill" data-bs-target="#pills-open-low-nse" type="button" role="tab" aria-controls="pills-open-low-nse" aria-selected="false">Same open & low</button>
+    <a class="nav-link" id="pills-open-low-nifty-bank-tab" data-bs-toggle="pill" href="#pills-open-low-nifty-bank" role="tab"
+      aria-controls="pills-open-low-nifty-bank" aria-selected="false">Same open & low</a>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="pills-open-high-nse-tab" data-bs-toggle="pill" data-bs-target="#pills-open-high-nse" type="button" role="tab" aria-controls="pills-open-high-nse" aria-selected="false">Same open & high</button>
+    <a class="nav-link" id="pills-open-high-nifty-bank-tab" data-bs-toggle="pill" href="#pills-open-high-nifty-bank" role="tab"
+      aria-controls="pills-open-high-nifty-bank" aria-selected="false">Same open & high</a>
   </li>
 </ul>
-</div>
 
-<div class="tab-pane fade show active" id="pills-all-nse" role="tabpanel" aria-labelledby="pills-all-nse-tab">
-  <div class="table-responsive">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Symbol</th>
-          <th scope="col">Open Price</th>
-          <th scope="col">High Price</th>
-          <th scope="col">Low Price</th>
-          <th scope="col">Last Price</th>
-          <th scope="col">Previous Price</th>
-          <th scope="col">Per-Change</th>
-          <th scope="col">Total Traded Volume</th>
-          <th scope="col">Total Traded Value</th>
-        </tr>
-      </thead>
-      <tbody>
-        <%= display_all_stock_data(@stock_nifty_bank) %>
-      </tbody>
-    </table>
+<div class="tab-content">
+  <div class="tab-pane fade show active" id="pills-all-nifty-bank" role="tabpanel" aria-labelledby="pills-all-nifty-bank-tab">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr> 
+            <th scope="col">Symbol</th>
+            <th scope="col">Open Price</th>
+            <th scope="col">High Price</th>
+            <th scope="col">Low Price</th>
+            <th scope="col">Last Price</th>
+            <th scope="col">Previous Price</th>
+            <th scope="col">Per-Change</th>
+            <th scope="col">Total Traded Volume</th>
+            <th scope="col">Total Traded Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= display_all_stock_data(@stock_nifty_bank) %>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
 
-<div class="tab-pane fade show active" id="pills-gainers-nse" role="tabpanel" aria-labelledby="pills-gainers-nse-tab">
-  <div class="table-responsive">
-    <table class="table">
-      <thead>
-        <tr>
+  <div class="tab-pane fade" id="pills-gainers-nifty-bank" role="tabpanel" aria-labelledby="pills-gainers-nifty-bank-tab">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
           <th scope="col">Symbol</th>
           <th scope="col">Open Price</th>
           <th scope="col">High Price</th>
@@ -52,20 +57,20 @@
           <th scope="col">Last Price</th>
           <th scope="col">Previous Price</th>
           <th scope="col">Per-Change</th>
-        </tr>
-      </thead>
-      <tbody>
-        <%= display_gainers_data(@gainers_nifty_bank) %>
-      </tbody>
-    </table>
+          </tr>
+        </thead>
+        <tbody>
+          <%= display_gainers_data(@gainers_nifty_bank) %>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
-
-<div class="tab-pane fade" id="pills-losers-nse" role="tabpanel" aria-labelledby="pills-losers-nse-tab">
-  <div class="table-responsive">
-    <table class="table">
-      <thead>
-        <tr>
+  
+  <div class="tab-pane fade" id="pills-losers-nifty-bank" role="tabpanel" aria-labelledby="pills-losers-nifty-bank-tab">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
           <th scope="col">Symbol</th>
           <th scope="col">Open Price</th>
           <th scope="col">High Price</th>
@@ -73,20 +78,19 @@
           <th scope="col">Last Price</th>
           <th scope="col">Previous Price</th>
           <th scope="col">Per-Change</th>
-        </tr>
-      </thead>
-      <tbody>
-        <%= display_losers_data(@losers_nifty_bank) %>
-      </tbody>
-    </table>
+          </tr>
+        </thead>
+        <tbody>
+          <%= display_losers_data(@losers_nifty_bank) %>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
-
-<div class="tab-pane fade show active" id="pills-open-low-nse" role="tabpanel" aria-labelledby="pills-open-low-nse-tab">
-  <div class="table-responsive">
-    <table class="table">
-      <thead>
-        <tr>
+  <div class="tab-pane fade" id="pills-open-low-nifty-bank" role="tabpanel" aria-labelledby="pills-open-low-nifty-bank-tab">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
           <th scope="col">Symbol</th>
           <th scope="col">Open Price</th>
           <th scope="col">High Price</th>
@@ -94,20 +98,20 @@
           <th scope="col">Last Price</th>
           <th scope="col">Previous Price</th>
           <th scope="col">Per-Change</th>
-        </tr>
-      </thead>
-      <tbody>
-        <%= display_same_open_low(@same_open_low_nifty_bank) %>
-      </tbody>
-    </table>
+          </tr>
+        </thead>
+        <tbody>
+          <%= display_same_open_low(@same_open_low_nifty_bank) %>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
 
-<div class="tab-pane fade show active" id="pills-open-high-nse" role="tabpanel" aria-labelledby="pills-open-high-nse-tab">
-  <div class="table-responsive">
-    <table class="table">
-      <thead>
-        <tr>
+  <div class="tab-pane fade" id="pills-open-high-nifty-bank" role="tabpanel" aria-labelledby="pills-open-high-nifty-bank-tab">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
           <th scope="col">Symbol</th>
           <th scope="col">Open Price</th>
           <th scope="col">High Price</th>
@@ -115,11 +119,12 @@
           <th scope="col">Last Price</th>
           <th scope="col">Previous Price</th>
           <th scope="col">Per-Change</th>
-        </tr>
-      </thead>
-      <tbody>
-        <%= display_same_open_high(@same_open_high_nifty_bank) %>
-      </tbody>
-    </table>
+          </tr>
+        </thead>
+        <tbody>
+          <%= display_same_open_high(@same_open_high_nifty_bank) %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

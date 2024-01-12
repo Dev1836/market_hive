@@ -31,6 +31,6 @@ class HomesController < ApplicationController
     @losers_mcx = mcx.find_losers
     @same_open_low_mcx = mcx.same_open_low
     @same_open_high_mcx = mcx.same_open_high
-    @stock_mcx = mcx.all_stock_data
+    @stock_mcx = mcx.all_stock_data_mcx
   end
 end
