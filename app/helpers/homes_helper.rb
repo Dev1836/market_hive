@@ -6,7 +6,7 @@ module HomesHelper
           concat content_tag(:td, item[column])
         end
         if show_checkboxes
-          concat content_tag(:td, check_box_tag('selected_stock_ids[]', item.id, current_user.favorites.include?(item), class: 'favorite-checkbox'))
+          concat content_tag(:td, check_box_tag('selected_stock_ids[]', item.id, current_user&.favorites&.include?(item), class: 'favorite-checkbox')) if current_user
         end
       end
     end.join.html_safe
