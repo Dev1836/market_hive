@@ -9,9 +9,9 @@ module HomesHelper
     end.join.html_safe
   end
 
-  def display_gainers_data(gainers_data)
+  def display_gainers_data(gainers_nse)
     columns = ['symbol', 'open_price', 'high_price', 'low_price', 'last_price', 'prev_price', 'per_change']
-    display_stock_data(gainers_data, columns)
+    display_stock_data(gainers_nse, columns)
   end
 
   def nifty_50

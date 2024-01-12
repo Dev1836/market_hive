@@ -52,7 +52,7 @@
   <section class="container my-4">
     <div class="swiper mySwiper p-2 p-md-3">
       <div class="swiper-wrapper align-items-center">
-       <% @stock_data.each do |stock| %>
+       <% @stock_nse.each do |stock| %>
         <div class="swiper-slide d-flex align-items-center justify-content-center">
           <div class="card-wrap">
             <a href="#" class="card-top-content d-block">
@@ -185,159 +185,37 @@
     </div>
   </section>
   <section class="container market-action-section" id="marketActionSection">
-    <div class="row">
-      <div class="col-12 col-lg-9 position-relative">
-        <a href="#" class="d-block">
-          <span class="d-block text-center text-dark bg-light p-1 fs-14">Advertisment</span>
-          <%= image_tag 'advertisment-3.gif', alt: 'Advertisement Image', class: 'w-100' %>
-        </a>
-        <h3 class="text-center text-dark mt-4 mb-3">Market Action</h3>
-        <div class="d-flex gap-3 justify-content-center justify-content-sm-start mb-2">
-          <a href="#" class="filter-buttons">Button 1</a>
-          <a href="#" class="filter-buttons">Button 2</a>
-          <a href="#" class="filter-buttons">Button 3</a>
-        </div>
-        <ul class="nav nav-pills justify-content-center mb-3 market-action-tab-ul" id="pills-tab" role="tablist">
-          <aside class="asside-tabs ps-2 ps-sm-0">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="pills-aside-tab" data-bs-toggle="pill" data-bs-target="#pills-aside" type="button" role="tab" aria-controls="pills-aside" aria-selected="false">MCX</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="pills-nifty50-tab" data-bs-toggle="pill" data-bs-target="#pills-nifty50" type="button" role="tab" aria-controls="pills-nifty50" aria-selected="false">Nifty 50</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="pills-nifty-bank-tab" data-bs-toggle="pill" data-bs-target="#pills-nifty-bank" type="button" role="tab" aria-controls="pills-nifty-bank" aria-selected="false">Nifty Bank</button>
-            </li>
-          </aside>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-gapup-tab" data-bs-toggle="pill" data-bs-target="#pills-gapup" type="button" role="tab" aria-controls="pills-gapup" aria-selected="false">All</button>
-          </li>
+    <a href="#" class="d-block">
+      <span class="d-block text-center text-dark bg-light p-1 fs-14">Advertisment</span>
+      <%= image_tag 'advertisment-3.gif', alt: 'Advertisement Image', class: 'w-100' %>
+    </a>
+    <h3 class="text-center text-dark mt-4 mb-3">Market Action</h3>
 
-          <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-symbol" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Top gainers</button>
-            
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Top losers</button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-low-tab" data-bs-toggle="pill" data-bs-target="#pills-low" type="button" role="tab" aria-controls="pills-low" aria-selected="false">Same open & low</button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-high-tab" data-bs-toggle="pill" data-bs-target="#pills-high" type="button" role="tab" aria-controls="pills-high" aria-selected="false">Same open & high</button>
-          </li>
-        </ul>
-        <div class="tab-content outer-tab-content" id="pills-tabContent">
-          <div class="tab-pane fade show active" id="pills-symbol" role="tabpanel" aria-labelledby="pills-home-tab">
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Symbol</th>
-                    <th scope="col">Open Price</th>
-                    <th scope="col">High Price</th>
-                    <th scope="col">Low Price</th>
-                    <th scope="col">Last Price</th>
-                    <th scope="col">Previous Price</th>
-                    <th scope="col">Per-Change</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <%= display_gainers_data(@gainers_data) %>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Symbol</th>
-                    <th scope="col">Open Price</th>
-                    <th scope="col">High Price</th>
-                    <th scope="col">Low Price</th>
-                    <th scope="col">Last Price</th>
-                    <th scope="col">Previous Price</th>
-                    <th scope="col">Per-Change</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <%= display_losers_data(@losers_data) %>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="pills-low" role="tabpanel" aria-labelledby="pills-low-tab">
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Symbol</th>
-                    <th scope="col">Open Price</th>
-                    <th scope="col">High Price</th>
-                    <th scope="col">Low Price</th>
-                    <th scope="col">Last Price</th>
-                    <th scope="col">Previous Price</th>
-                    <th scope="col">Per-Change</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <%= display_same_open_low(@same_open_low_data) %>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="pills-high" role="tabpanel" aria-labelledby="pills-high-tab">
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Symbol</th>
-                    <th scope="col">Open Price</th>
-                    <th scope="col">High Price</th>
-                    <th scope="col">Low Price</th>
-                    <th scope="col">Last Price</th>
-                    <th scope="col">Previous Price</th>
-                    <th scope="col">Per-Change</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <%= display_same_open_high(@same_open_high_data) %>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="pills-gapup" role="tabpanel" aria-labelledby="pills-gapup-tab">
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Symbol</th>
-                    <th scope="col">Open Price</th>
-                    <th scope="col">High Price</th>
-                    <th scope="col">Low Price</th>
-                    <th scope="col">Last Price</th>
-                    <th scope="col">Previous Price</th>
-                    <th scope="col">Per-Change</th>
-                    <th scope="col">Total Traded Volume</th>
-                    <th scope="col">Total Traded Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <%= display_all_stock_data(@stock_data) %>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="pills-aside" role="tabpanel" aria-labelledby="pills-aside-tab">
-            mcx data
-          </div>
-          <div class="tab-pane fade" id="pills-nifty50" role="tabpanel" aria-labelledby="pills-nifty50-tab">7</div>
-          <div class="tab-pane fade" id="pills-nifty-bank" role="tabpanel" aria-labelledby="pills-nifty-bank-tab">8</div>
+    <div class="row">
+      <!-- Left column for buttons -->
+      <div class="col-12 col-lg-2">
+        <div class="d-flex flex-column gap-3">
+          <button class="btn btn-primary" id="pills-aside-tab" data-bs-toggle="pill" data-bs-target="#pills-aside" type="button" role="tab" aria-controls="pills-aside" aria-selected="false" data-category="mcx">MCX</button>
+          <button class="btn btn-primary" id="pills-nifty50-tab" data-bs-toggle="pill" data-bs-target="#pills-nifty50" type="button" role="tab" aria-controls="pills-nifty50" aria-selected="false" data-category="nifty50">Nifty 50</button>
+          <button class="btn btn-primary" id="pills-nifty-bank-tab" data-bs-toggle="pill" data-bs-target="#pills-nifty-bank" type="button" role="tab" aria-controls="pills-nifty-bank" aria-selected="false" data-category="niftyBank">Nifty Bank</button>
         </div>
       </div>
-      <aside class="col-12 col-lg-3">
+  
+      <!-- Right column for data -->
+      <div class="col-12 col-lg-7">
+        <div class="tab-content">
+          <div class="tab-pane fade show active" id="pills-symbol" role="tabpanel" aria-labelledby="pills-home-tab" data-category="mcx">
+            <%= render partial: 'mcx' %>
+          </div>
+          <div class="tab-pane fade" id="pills-nifty50" role="tabpanel" aria-labelledby="pills-nifty50-tab" data-category="nifty50">
+            <%= render partial: 'nifty' %>
+          </div>
+          <div class="tab-pane fade" id="pills-nifty-bank" role="tabpanel" aria-labelledby="pills-nifty-bank-tab" data-category="niftyBank">
+            <%= render partial: 'nifty_bank' %>
+          </div>
+        </div>
+
+      <div class="col-lg-3">
         <a href="#" class="d-block">
           <span class="d-block text-center text-dark bg-light p-1 fs-14">Advertisment</span>
           <%= image_tag 'advertisment.gif', alt: 'Advertisement', class: 'add-img w-100' %>
@@ -346,10 +224,24 @@
           <span class="d-block text-center text-dark bg-light p-1 fs-14">Advertisment</span>
           <%= image_tag 'netflix-add.gif', class: 'add-img w-100', alt: "" %>
         </a>
-      </aside>
+      </div>
     </div>
   </section>
-  <section class="global-market-section container" id="globalMarketSection">
+  
+  <script>
+    document.querySelectorAll('.btn').forEach(function(button) {
+      button.addEventListener('click', function() {
+        var category = button.getAttribute('data-category');
+        
+        document.querySelectorAll('.tab-pane').forEach(function(tabPane) {
+          tabPane.classList.remove('show', 'active');
+        });
+        document.querySelector('.tab-pane[data-category="' + category + '"]').classList.add('show', 'active');
+      });
+    });
+  </script>
+
+ <section class="global-market-section container" id="globalMarketSection">
     <h3 class="text-center text-dark mt-4 mb-4 pb-2">Global Market</h3>
     <div class="row">
       <div class="col-12 col-sm-6 col-md-4">

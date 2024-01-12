@@ -17,7 +17,7 @@ module RkExchange
         api_request(:indices)
       end
 
-      def stock
+      def stock(index)
         api_request(:stock)
       end
 

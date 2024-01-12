@@ -9,9 +9,9 @@ module Api
             stock = Stock.find_by(symbol: data['symbol'])
 
             if stock.present?
-              stock.update!(create_or_update_stock(data, data[:symbol]))
+              stock.update!(stock_params(data, data[:symbol]))
             else
-              Stock.create!(create_or_update_stock(data, data[:symbol]))
+              Stock.create!(stock_params(data, data[:symbol]))
             end
           end
 
@@ -23,7 +23,7 @@ module Api
 
       private
 
-      def create_or_update_stock(data, name)
+      def stock_params(data, name)
         {
           symbol: data["symbol"],
           index_name: data["index_name"],

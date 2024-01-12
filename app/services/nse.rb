@@ -3,45 +3,67 @@ class Nse < Base
     @nse_service = RkExchange::Client.nse_client
   end
 
-  def fetch_stock_data
-    stock_data = @nse_service.stock
-    if stock_data.success?
+  def fetch_stock_data(index)
+    stock_data = @nse_service.stock(index)
+    
+    if stock_data
       stock_data['data'].each do |data|
         stock = Stock.find_by(symbol: data['symbol'])
+        
         if stock.present?
-          stock.update!(create_or_update_stock(data, stock_data['name']))
+          stock.update!(stock_params(data, stock_data['name']))
         else
-          Stock.create!(create_or_update_stock(data,stock_data['name']))
+          Stock.create!(stock_params(data, stock_data['name']))
         end
       end
     else
-      puts "Failed to fetch stock data"
+      puts "Failed to fetch stock data for #{index}"
     end
   end
 
-  def find_losers
-    display_stock_data(order: :asc)
+  def find_losers_nifty_50
+    display_stock_data('NIFTY 50', order: :asc)
   end
 
-  def all_stock_data
-    stock = Stock.all
+  def all_stock_data_nifty_50
+    Stock.where('index_name = ?', 'NIFTY 50')
   end
 
-  def find_gainers
-    display_stock_data(order: :desc)
+  def find_gainers_nifty_50
+    display_stock_data('NIFTY 50', order: :desc)
   end
 
-  def same_open_high
-    open_equals_high_data = Stock.where('open_price = high_price')
+  def same_open_high_nifty_50
+    Stock.where('open_price = high_price AND index_name = ?', 'NIFTY 50')
   end
 
-  def same_open_low
-    open_equals_low_data = Stock.where('open_price = low_price')
+  def same_open_low_nifty_50
+    Stock.where('open_price = low_price AND index_name = ?', 'NIFTY 50')
+  end
+
+  def find_losers_nifty_bank
+    display_stock_data('NIFTY BANK', order: :asc)
+  end
+
+  def all_stock_data_nifty_bank
+    Stock.where('index_name = ?', 'NIFTY BANK')
+  end
+
+  def find_gainers_nifty_bank
+    display_stock_data('NIFTY BANK', order: :desc)
+  end
+
+  def same_open_high_nifty_bank
+    Stock.where('open_price = high_price AND index_name = ?', 'NIFTY BANK')
+  end
+
+  def same_open_low_nifty_bank
+    Stock.where('open_price = low_price AND index_name = ?', 'NIFTY BANK')
   end
 
   private
 
-  def create_or_update_stock(data, stock_name)
+  def stock_params(data, stock_name)
     {
       index_name: stock_name,
       symbol: data['symbol'],
@@ -56,7 +78,7 @@ class Nse < Base
     }
   end
 
-  def display_stock_data(order:)
-    stock_data = Stock.where(index_name: 'NIFTY 50').order(per_change: order).limit(10)
+  def display_stock_data(index, order:)
+    Stock.where(index_name: index).order(per_change: order).limit(10)
   end
 end

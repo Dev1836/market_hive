@@ -4,7 +4,7 @@ class Mcx < Base
   end
 
   def fetch_stock_data
-    stock_data = @mcx_service.stock
+    stock_data = @mcx_service.stock('MCX')
     current_month_data = stock_data.select do |stock|
       Date.parse(stock['ExpiryDate']).month == Date.today.month
     end
@@ -13,9 +13,9 @@ class Mcx < Base
       current_month_data.each do |data|
         stock = Stock.find_by(symbol: data['Symbol'])
         if stock.present?
-          stock.update!(create_or_update_stock(data, 'MCX'))
+          stock.update!(stock_params(data, 'MCX'))
         else
-          Stock.create!(create_or_update_stock(data, 'MCX'))
+          Stock.create!(stock_params(data, 'MCX'))
         end
       end
     else
@@ -27,34 +27,32 @@ class Mcx < Base
     display_stock_data(order: :asc)
   end
 
-
-
   def find_gainers
     display_stock_data(order: :desc)
   end
 
   def same_open_high
-    open_equals_high_data = Stock.where('open_price = high_price')
+    open_equals_high_data = Stock.where('open_price = high_price AND index_name = ?', 'MCX')
   end
 
   def same_open_low
-    open_equals_low_data = Stock.where('open_price = low_price')
+    open_equals_low_data = Stock.where('open_price = low_price AND index_name = ?', 'MCX')
   end
 
   private
 
-  def create_or_update_stock(data, stock_name)
+  def stock_params(data, stock_name)
     {
       index_name: stock_name,
-      symbol: data['symbol'],
-      open_price: data['open'],
-      high_price: data['dayHigh'],
-      low_price: data['dayLow'],
-      last_price: data['lastPrice'],
-      prev_price: data['previousClose'],
-      per_change: data['pChange'],
-      total_traded_volume: data['totalTradedVolume'],
-      total_traded_value: data['totalTradedValue'],
+      symbol: data['Symbol'],
+      open_price: data['Open'],
+      high_price: data['High'],
+      low_price: data['Low'],
+      last_price: data['LTP'],
+      prev_price: data['PreviousClose'],
+      per_change: data['PercentChange'],
+      total_traded_volume: data['Volume'],
+      total_traded_value: data['ValueInLacs'],
     }
   end
 
