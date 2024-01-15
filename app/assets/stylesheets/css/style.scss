@@ -321,10 +321,7 @@ th, td{
   -webkit-line-clamp: 3;
 }
 .footer{
-  /* app/assets/images/footer.webp */
-  /* url(/stylesheets/css/images/footer.webp) */
-  // background-image: url(footer.webp);
-  background-image: url('/app/assets/images/footer.webp');
+  background-image: url('/assets/footer.webp');
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: cover;

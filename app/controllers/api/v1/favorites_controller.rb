@@ -1,6 +1,14 @@
 module Api
   module V1  
     class FavoritesController < ApplicationController
+      before_action :authenticate_user!, only: [:create,:destroy]
+
+      def index
+        @selected_stocks = current_user.favorites.includes(:stock).distinct.map do |favorite|
+          stock = favorite.stock
+          { index_name: stock.index_name, symbol: stock.symbol }
+        end
+      end
 
       def create
         @favorite = Favorite.new(user_id: current_user.id, stock_id: params[:stock_id])
@@ -13,7 +21,7 @@ module Api
       end
 
       def destroy
-        @favorite = Favorite.find_by(user_id: current_user.id, stock_id: params[:stock_id])
+        @favorite = Favorite.find_by(user_id: current_user.id, stock_id: params[:id])
 
         if @favorite
           @favorite.destroy

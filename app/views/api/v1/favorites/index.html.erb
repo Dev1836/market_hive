@@ -1,0 +1,34 @@
+<%= render partial: 'layouts/header'%>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 text-center">
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+          <h3> Favorite Stocks </h3>
+          <thead>
+            <tr> 
+              <th>Index Name</th>
+              <th>Symbol</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if @selected_stocks.any? %>
+              <% @selected_stocks.each do |stock| %>
+                <tr>
+                  <td><%= stock[:index_name] %></td>
+                  <td><%= stock[:symbol] %></td>
+                </tr>
+              <% end %>
+            <% else %>
+              <tr>
+                <td colspan="2">No favorite stocks</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render partial: 'layouts/footer'%>

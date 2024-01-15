@@ -196,7 +196,7 @@
       <div class="col-12 col-lg-2">
         <div class="d-flex flex-column gap-3">
           <% if current_user %>
-            <button id="showFavoritesBtn">Favorite Stocks</button>
+            <%= link_to 'Favorite Stocks', api_v1_favorites_path, class: 'btn btn-primary' %>
           <% end %>
           <button class="btn btn-primary" id="pills-aside-tab" data-bs-toggle="pill" data-bs-target="#pills-aside" type="button" role="tab" aria-controls="pills-favorite" aria-selected="false" data-category="mcx">MCX</button>
           <button class="btn btn-primary" id="pills-nifty50-tab" data-bs-toggle="pill" data-bs-target="#pills-nifty50" type="button" role="tab" aria-controls="pills-nifty50" aria-selected="false" data-category="nifty50">Nifty 50</button>
@@ -231,9 +231,8 @@
     </div>
   </section>
 
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-  <script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
     document.querySelectorAll('.btn').forEach(function(button) {
       button.addEventListener('click', function() {
         var category = button.getAttribute('data-category');
@@ -245,44 +244,35 @@
       });
     });
 
-  $(document).ready(function() {
-   $("#showFavoritesBtn").on("click", function() {
-     var selectedStockIds = $('input[name="selected_stock_ids[]"]:checked').map(function() {
-       return $(this).val();
-     }).get();
- 
-     var csrfToken = $('meta[name=csrf-token]').attr('content');
- 
-     function showFavoriteStocks() {
-         $('tbody tr').hide();
-         $('input[name="selected_stock_ids[]"]:checked').each(function () {
-           $(this).closest('tr').show();
-         });
-       }
-       $('#showFavoritesBtn').on('click', function () {
-         showFavoriteStocks();
-         $('th:contains("Select"), td:contains("Select"), .favorite-checkbox').hide();
-       });
- 
-     selectedStockIds.forEach(function(stockId) {
-       $.ajax({
-         url: '/api/v1/stocks/' + stockId + '/favorites',
-         method: 'POST',
-         data: { stock_id: stockId, authenticity_token: csrfToken },
-         success: function(response) {
-           console.log('Favorite updated successfully for stock_id: ' + stockId);
-           showSelectedStocks(); // Show only the selected rows after updating favorites
-           $('th:contains("Select"), td:contains("Select"), .favorite-checkbox').hide();
-         },
-         error: function(error) {
-           console.error('Error updating favorite for stock_id ' + stockId + ':', error);
-         }
-       });
-     });
-   });
- });
+    $(document).ready(function() {
+      $('input[name="selected_stock_ids[]"]').each(function() {
+        var stockId = $(this).val();
+        var isSelected = localStorage.getItem('selected_stock_' + stockId);
+        $(this).prop('checked', isSelected === 'true');
+      });
 
-  </script>
+    $('input[name="selected_stock_ids[]"]').on('change', function() {
+      var stockId = $(this).val();
+      var csrfToken = $('meta[name=csrf-token]').attr('content');
+      var isChecked = $(this).is(':checked');
+
+      var ajaxConfig = {
+        url: isChecked ? '/api/v1/favorites' : '/api/v1/favorites/' + stockId,
+        method: isChecked ? 'POST' : 'DELETE',
+        headers: { 'X-CSRF-Token': csrfToken },
+        data: isChecked ? { stock_id: stockId, authenticity_token: csrfToken } : {},
+        success: function(response) {
+          console.log('Favorite ' + (isChecked ? 'created' : 'deleted') + ' successfully for stock_id: ' + stockId);
+        },
+        error: function(error) {
+          console.error('Error ' + (isChecked ? 'creating' : 'deleting') + ' favorite for stock_id ' + stockId + ':', error);
+        }
+      };
+      $.ajax(ajaxConfig);
+      localStorage.setItem('selected_stock_' + stockId, isChecked.toString());
+    });
+  });
+</script>
 
  <section class="global-market-section container" id="globalMarketSection">
     <h3 class="text-center text-dark mt-4 mb-4 pb-2">Global Market</h3>
@@ -937,10 +927,10 @@
           </div>
         </div>
       </div>
-      <p class="footer-desc text-white mb-0 text-center mt-4">© 2023 <a href="http://codiatic.com/" target="_blank" class="text-primary"> Codiatic Technologies Private Limited.</a> All rights reserved</p>
+      <p class="footer-desc text-white mb-0 text-center mt-4">© 2023 <a href="http://example.com/" target="_blank" class="text-primary"></a> All rights reserved</p>
     </div>
   </footer>
-    
+
 <%= javascript_include_tag 'js/bundle.min.js' %>
 <%= javascript_include_tag 'js/swiper.min.js' %>
 <%= javascript_include_tag 'js/jquery.min.js' %>
