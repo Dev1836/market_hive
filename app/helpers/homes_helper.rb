@@ -5,39 +5,37 @@ module HomesHelper
         columns.each do |column|
           concat content_tag(:td, item[column])
         end
-        if show_checkboxes
-          concat content_tag(:td, check_box_tag('selected_stock_ids[]', item.id, current_user&.favorites&.include?(item), class: 'favorite-checkbox')) if current_user
-        end
+        append_checkbox_td(item) if show_checkboxes
       end
     end.join.html_safe
   end
 
-  def display_gainers_data(gainers_nse)
-    columns = ['symbol', 'open_price', 'high_price', 'low_price', 'last_price', 'prev_price', 'per_change']
-    display_stock_data(gainers_nse, columns)
+  def append_checkbox_td(item)
+    concat content_tag(:td, check_box_tag('selected_stock_ids[]', item.id, current_user&.favorites&.include?(item), class: 'favorite-checkbox')) if current_user
   end
 
-  def nifty_50
-    Stock.find_by(symbol: "NIFTY 50")
+  def find_stock_by_symbol(stock_collection, symbol)
+    stock_collection.find_by!(symbol: symbol)
   end
 
-  def display_losers_data(losers_data)
-    columns = ['symbol', 'open_price', 'high_price', 'low_price', 'last_price', 'prev_price', 'per_change']
-    display_stock_data(losers_data, columns)
+  def nifty_bank_stock(stock_nifty_bank)
+    find_stock_by_symbol(stock_nifty_bank, "NIFTY BANK")
   end
 
-  def display_same_open_low(data)
-    columns = ['symbol', 'open_price', 'high_price', 'low_price', 'last_price', 'prev_price', 'per_change']
-    display_stock_data(data, columns)
+  def nifty_50_stock(stock_nse)
+    find_stock_by_symbol(stock_nse, "NIFTY 50")
   end
 
-  def display_same_open_high(data)
-    columns = ['symbol', 'open_price', 'high_price', 'low_price', 'last_price', 'prev_price', 'per_change']
-    display_stock_data(data, columns)
+  def mcx_stock(stock_mcx)
+    find_stock_by_symbol(stock_mcx, "MCX")
   end
 
-  def display_all_stock_data(data)
-    columns = ['symbol', 'open_price', 'high_price', 'low_price', 'last_price', 'prev_price', 'per_change','total_traded_volume', 'total_traded_value']
-    display_stock_data(data, columns)
+  def stock_high_low_value(stock)
+    stock.high_price - stock.low_price
   end
+  
+  def stock_high_low_percentage(stock)
+    high_low_value = stock_high_low_value(stock)
+    (((high_low_value) / stock.open_price.to_d) * 100).round(2)
+  end  
 end
