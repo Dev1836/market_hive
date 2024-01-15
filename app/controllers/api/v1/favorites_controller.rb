@@ -6,7 +6,6 @@ module Api
       def index
         @selected_stocks = current_user.favorites.includes(:stock).distinct.map do |favorite|
           stock = favorite.stock
-          { index_name: stock.index_name, symbol: stock.symbol }
         end
       end
 
