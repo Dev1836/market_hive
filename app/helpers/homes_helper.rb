@@ -36,6 +36,9 @@ module HomesHelper
   
   def stock_high_low_percentage(stock)
     high_low_value = stock_high_low_value(stock)
-    (((high_low_value) / stock.open_price.to_d) * 100).round(2)
+
+    return 0 if high_low_value.zero?
+
+    (((high_low_value) / stock.open_price.to_f) * 100).round(2).to_f
   end  
 end
