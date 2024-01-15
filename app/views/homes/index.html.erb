@@ -295,10 +295,21 @@
     document.querySelectorAll('.btn').forEach(function(button) {
       button.addEventListener('click', function() {
         var category = button.getAttribute('data-category');
-        
+        var mcxElement = document.querySelector('#pills-all-mcx');
+        var nifty50Element = document.querySelector('#pills-all-nifty-50');
+        var niftyBankElement = document.querySelector('#pills-all-nifty-bank');
+
         document.querySelectorAll('.tab-pane').forEach(function(tabPane) {
           tabPane.classList.remove('show', 'active');
         });
+
+        if (category === 'mcx') {
+          if (mcxElement) { mcxElement.classList.add('show', 'active'); }
+        } else if (category === 'nifty50') {
+          if (nifty50Element) { nifty50Element.classList.add('show', 'active'); }
+        } else if (category === 'niftyBank') {
+          if (niftyBankElement) { niftyBankElement.classList.add('show', 'active'); }
+        }
         document.querySelector('.tab-pane[data-category="' + category + '"]').classList.add('show', 'active');
       });
     });
